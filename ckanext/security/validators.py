@@ -38,3 +38,30 @@ def old_username_validator(key, data, errors, context):
     # Completely prevents changing of user names
     old_user = authz._get_user(context.get('user'))
     return old_user.name
+
+def user_name_sanitize(key, data, errors, context):
+    value = data[key]
+    invalid_string_patterns = ['hack by','hacked','hack']
+    occurance = count_invalid_data_patterns(value,invalid_string_patterns)
+    if occurance > 0:
+        raise Invalid(_('Input Contains Malicious Data'))
+    else:
+        pass
+
+def user_about_validator(key, data, errors, context):
+    value = data[key]
+    invalid_string_patterns = ['hack by','hacked','hack']
+    occurance = count_invalid_data_patterns(value,invalid_string_patterns)
+    if occurance > 0:
+        raise Invalid(_('Input Contains Malicious Data'))
+    else:
+        pass
+
+def count_invalid_data_patterns(inputvalue,string_patterns):
+    occurance_count = 0
+    for string in string_patterns:
+        occurance_count += inputvalue.count(string)
+        occurance_count += inputvalue.count(string.capitalize())
+        occurance_count += inputvalue.count(string.upper())
+    return occurance_count
+

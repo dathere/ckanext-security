@@ -41,27 +41,25 @@ def old_username_validator(key, data, errors, context):
 
 def user_name_sanitize(key, data, errors, context):
     value = data[key]
-    invalid_string_patterns = ['hack by','hacked','hack']
-    occurance = count_invalid_data_patterns(value,invalid_string_patterns)
-    if occurance > 0:
+    invalid_string_patterns = ['hack by','hacked','hack-by','hack_by','hack*by']
+    if is_input_valid(value,invalid_string_patterns) is False:
         raise Invalid(_('Input Contains Malicious Data'))
     else:
         pass
 
 def user_about_validator(key, data, errors, context):
     value = data[key]
-    invalid_string_patterns = ['hack by','hacked','hack']
-    occurance = count_invalid_data_patterns(value,invalid_string_patterns)
-    if occurance > 0:
+    invalid_string_patterns = ['hack by','hacked','hack-by','hack_by','hack*by']
+    if is_input_valid(value,invalid_string_patterns) is False:
         raise Invalid(_('Input Contains Malicious Data'))
     else:
         pass
 
-def count_invalid_data_patterns(inputvalue,string_patterns):
-    occurance_count = 0
+def is_input_valid(inputvalue,string_patterns):
     for string in string_patterns:
-        occurance_count += inputvalue.count(string)
-        occurance_count += inputvalue.count(string.capitalize())
-        occurance_count += inputvalue.count(string.upper())
-    return occurance_count
+        if inputvalue.count(string) > 0:
+            return False
+        if inputvalue.lower().count(string) > 0:
+            return False
+    return True
 

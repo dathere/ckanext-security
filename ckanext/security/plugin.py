@@ -4,15 +4,10 @@ import ckan.logic.schema
 
 from ckanext.security import schema
 
-def ckanext_security_user_show(context, data_dict):
-    #just returning success true, no logic check is made since if user is not logged
-    #in user not allowed to view user details
-    return {'success':True}
 
 class CkanSecurityPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IRoutes)
-    plugins.implements(plugins.IAuthFunctions)
 
     def update_config(self, config):
         # Monkeypatching all user schemas in order to enforce a stronger password
@@ -35,7 +30,3 @@ class CkanSecurityPlugin(plugins.SingletonPlugin):
 
     def after_map(self, urlmap):
         return urlmap
-
-    def get_auth_functions(self):
-        return {'user_show':ckanext_security_user_show}
-

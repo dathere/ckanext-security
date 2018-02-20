@@ -41,25 +41,21 @@ def old_username_validator(key, data, errors, context):
 
 def user_name_sanitize(key, data, errors, context):
     value = data[key]
-    invalid_string_patterns = ['hack by','hacked','hack-by','hack_by','hack*by']
-    if is_input_valid(value,invalid_string_patterns) is False:
+    if is_input_valid(value) is False:
         raise Invalid(_('Input Contains Malicious Data'))
     else:
         pass
 
 def user_about_validator(key, data, errors, context):
     value = data[key]
-    invalid_string_patterns = ['hack by','hacked','hack-by','hack_by','hack*by']
-    if is_input_valid(value,invalid_string_patterns) is False:
+    if is_input_valid(value) is False:
         raise Invalid(_('Input Contains Malicious Data'))
     else:
         pass
 
-def is_input_valid(inputvalue,string_patterns):
-    for string in string_patterns:
-        if inputvalue.count(string) > 0:
-            return False
-        if inputvalue.lower().count(string) > 0:
+def is_input_valid(inputvalue):
+    invalid_strings = ['hacked','hack by','hack-by','hack_by','hack*by']
+    for string in invalid_strings:
+        if string.lower() in inputvalue.lower():
             return False
     return True
-

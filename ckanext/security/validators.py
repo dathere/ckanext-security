@@ -43,14 +43,16 @@ def old_username_validator(key, data, errors, context):
 def user_name_sanitize(key, data, errors, context):
     value = data[key]
     if is_input_valid(value) is False:
-        raise Invalid(_('Input Contains Malicious Data'))
+        raise Invalid(_('Input Contains Invalid Text'))
+    elif value and re.match('admin', value, re.I):
+        raise Invalid(_('Input Contains Invalid Text'))
     else:
         pass
 
 def user_about_validator(key, data, errors, context):
     value = data[key]
     if is_input_valid(value) is False:
-        raise Invalid(_('Input Contains Malicious Data'))
+        raise Invalid(_('Input Contains Invalid Text'))
     else:
         pass
 

@@ -25,7 +25,7 @@ def send_reset_link(user):
     extra_vars = {
         'site_title': config.get('ckan.site_title')
     }
-    subject = render_jinja2('emails/reset_password_subject.txt', extra_vars)
+    subject = render_jinja2('security/emails/reset_password_subject.txt', extra_vars)
 
     # Make sure we only use the first line
     subject = subject.split('\n')[0]

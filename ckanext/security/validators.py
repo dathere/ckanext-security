@@ -44,7 +44,7 @@ def user_name_sanitize(key, data, errors, context):
     value = data[key]
     if is_input_valid(value) is False:
         raise Invalid(_('Input Contains Invalid Text'))
-    elif value and re.match('admin', value, re.I):
+    elif value and re.match('admin', value, re.IGNORECASE):
         raise Invalid(_('Input Contains Invalid Text'))
     else:
         pass
@@ -56,9 +56,9 @@ def user_about_validator(key, data, errors, context):
     else:
         pass
 
+invalid_list = ['hacked', 'hack[^a-zA-Z]+by']
 def is_input_valid(input_value):
-    invalid_list = ['hacked', 'hack[^a-zA-Z]+by']
     for invalid_string in invalid_list:
-        if re.search(invalid_string, input_value.lower()):
+        if re.search(invalid_string, input_value, re.IGNORECASE):
             return False
     return True

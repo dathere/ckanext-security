@@ -1,4 +1,5 @@
 import string
+import re
 
 from ckan import authz
 from ckan.common import _
@@ -53,9 +54,9 @@ def user_about_validator(key, data, errors, context):
     else:
         pass
 
-def is_input_valid(inputvalue):
-    invalid_strings = ['hacked','hack by','hack-by','hack_by','hack*by']
-    for string in invalid_strings:
-        if string.lower() in inputvalue.lower():
+def is_input_valid(input_value):
+    invalid_list = ['hacked', 'hack[^a-zA-Z]+by']
+    for invalid_string in invalid_list:
+        if re.search(invalid_string, input_value.lower()):
             return False
     return True

@@ -1,7 +1,10 @@
 import os
 import codecs
 
-from ckan.common import config
+try:
+    from ckan.common import config
+except ImportError:
+    from pylons import config
 from ckan.lib.base import render_jinja2
 from ckan.lib.mailer import *
 from ckan import model

@@ -22,3 +22,16 @@ def user_list(context, data_dict):
     except toolkit.Invalid:
         return {'success': False}
     return {'success': True}
+
+
+def user_show(context, data_dict):
+    # Get the user name of the logged-in user.
+    user = context['user']
+
+    # check if user doesn't exist (e.g. they're not logged-in)
+    convert_user_name_or_id_to_id = toolkit.get_converter('convert_user_name_or_id_to_id')
+    try:
+        user_id = convert_user_name_or_id_to_id(user, context)
+    except toolkit.Invalid:
+        return {'success': False}
+    return {'success': True}

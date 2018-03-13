@@ -33,4 +33,5 @@ class CkanSecurityPlugin(plugins.SingletonPlugin):
         return urlmap
 
     def get_auth_functions(self):
-        return {'user_list': auth.user_list}
+        return {'user_list': auth.user_list,
+                'user_show': auth.user_show}

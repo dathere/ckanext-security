@@ -4,6 +4,7 @@ import re
 from ckan import authz
 from ckan.common import _
 from ckan.lib.navl.dictization_functions import Missing, Invalid
+from profanityfilter import ProfanityFilter
 
 
 MIN_PASSWORD_LENGTH = 10
@@ -58,7 +59,10 @@ def user_about_validator(key, data, errors, context):
 
 invalid_list = ['hacked', 'hack[^a-zA-Z]+by']
 def is_input_valid(input_value):
+    pf = ProfanityFilter()
     for invalid_string in invalid_list:
         if re.search(invalid_string, input_value, re.IGNORECASE):
+            return False
+        if not pf.is_clean(input_value):
             return False
     return True

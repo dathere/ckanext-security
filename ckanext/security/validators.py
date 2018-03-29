@@ -58,12 +58,13 @@ def user_about_validator(key, data, errors, context):
     else:
         pass
 
-invalid_list = ['hacked', 'hack[^a-zA-Z]+by']
+invalid_list = ['hacked', 'hack[^a-zA-Z]+by', 'hack']
 def is_input_valid(input_value):
     pf = ProfanityFilter()
     for invalid_string in invalid_list:
         if re.search(invalid_string, input_value, re.IGNORECASE):
             return False
-        if not pf.is_clean(input_value):
-            return False
+    value = input_value.lower()
+    if not pf.is_clean(value):
+        return False
     return True

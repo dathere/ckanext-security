@@ -7,9 +7,10 @@ from ckan.lib.navl.dictization_functions import Missing, Invalid
 
 
 MIN_PASSWORD_LENGTH = 10
+MIN_RULE_SETS = 2
 MIN_LEN_ERROR = (
     'Your password must be {} characters or longer, and consist of at least '
-    'three of the following character sets: uppercase characters, lowercase '
+    '{} of the following character sets: uppercase characters, lowercase '
     'characters, digits, punctuation & special characters.'
 )
 
@@ -31,8 +32,8 @@ def user_password_validator(key, data, errors, context):
             any(x.isdigit() for x in value),
             any(x in string.punctuation for x in value)
         ]
-        if len(value) < MIN_PASSWORD_LENGTH or sum(rules) < 3:
-            raise Invalid(_(MIN_LEN_ERROR.format(MIN_PASSWORD_LENGTH)))
+        if len(value) < MIN_PASSWORD_LENGTH or sum(rules) < MIN_RULE_SETS:
+            raise Invalid(_(MIN_LEN_ERROR.format(MIN_PASSWORD_LENGTH, MIN_RULE_SETS)))
 
 
 def old_username_validator(key, data, errors, context):

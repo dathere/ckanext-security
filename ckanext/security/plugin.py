@@ -3,12 +3,10 @@ import ckan.plugins.toolkit as toolkit
 import ckan.logic.schema
 
 from ckanext.security import schema
-from ckanext.security import auth
 
 class CkanSecurityPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IRoutes)
-    plugins.implements(plugins.IAuthFunctions)
 
     def update_config(self, config):
         # Monkeypatching all user schemas in order to enforce a stronger password
@@ -31,7 +29,3 @@ class CkanSecurityPlugin(plugins.SingletonPlugin):
 
     def after_map(self, urlmap):
         return urlmap
-
-    def get_auth_functions(self):
-        return {'user_list': auth.user_list,
-                'user_show': auth.user_show}

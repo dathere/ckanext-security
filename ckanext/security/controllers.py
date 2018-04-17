@@ -36,8 +36,7 @@ class SecureUserController(UserController):
             id = request.params.get('user')
 
             context = {'model': model,
-                       'user': c.user,
-                       'ignore_auth': True}
+                       'user': c.user}
 
             data_dict = {'id': id}
             user_obj = None
@@ -61,12 +60,8 @@ class SecureUserController(UserController):
                         user_obj = context['user_obj']
 
             if user_obj:
-                try:
-                    mailer.send_reset_link(user_obj)
-                    helpers.flash_success(_('Please check your inbox for '
-                                          'a reset code.'))
-                    helpers.redirect_to('/')
-                except mailer.MailerException, e:
-                    helpers.flash_error(_('Could not send reset link: %s') %
-                                        unicode(e))
+                mailer.send_reset_link(user_obj)
+            helpers.flash_success(_('Please check your inbox for a reset code.'))
+            helpers.redirect_to('/')
+
         return render('user/request_reset.html')

@@ -2,7 +2,9 @@
 
 {% block pre_primary %}
   {% if not c.userobj %}
-    <p><a href="/user/login">Login</a> to view user profile</p>
+    <section class="module-content">
+      <p><a href="/user/login">Login</a> to view user profile</p>
+    </section>
   {% endif %}
 {% endblock %}
 

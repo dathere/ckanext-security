@@ -14,6 +14,7 @@
 ## Submitter Checklist
 - [ ] I have documented any infrastructural changes- Installation Requiremewnts, dependencies on other extensions, etc
 - [ ] I have applied the correct labels
+- [ ] I have added more than one reviewer
 
 ## Reviewer Checklist
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. --->

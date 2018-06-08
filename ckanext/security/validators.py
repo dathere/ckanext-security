@@ -58,7 +58,7 @@ def user_about_validator(key, data, errors, context):
     else:
         pass
 
-invalid_list = ['hacked', 'hacking', 'hacks', 'hack[^a-zA-Z]+', 'malware', 'virus']
+invalid_list = ['hack', 'malware', 'virus']
 def is_input_valid(input_value):
     value = input_value.lower()
     pf = ProfanityFilter()

@@ -7,10 +7,8 @@
 ## Screenshots/GIF:
 <!--- A picture is worth a thousand words, add an image if necessary --->
 
-## Testing Procedure 
+## Testing Procedure && Acceptance Criteria 
 <!--- Instructions to test the pr --->
-
-## Acceptance Criteria 
 <!--- What should people expect after going through the testing procedure --->
 
 ## Submitter Checklist

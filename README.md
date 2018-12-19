@@ -4,6 +4,7 @@
 A CKAN extension to hold various security improvements for CKAN, including:
 
 * Stronger password reset tokens
+* Uses any 2 character sets for password validations.The character sets are uppercase characters, lowercase characters, digits, and special characters.
 * Brute force protection
 * Cookie-based CSRF protection for requests
 * Removed ability to change usernames after signup
@@ -12,6 +13,8 @@ A CKAN extension to hold various security improvements for CKAN, including:
 * Stronger password validators (NZISM compatible)
 * When users try to reset a password for an email address, CKAN will no longer
 disclose whether or not that email address exists in the DB.
+* Hide user profiles and user list from unlogged users
+* Profanity check for usernames, and banned sensitive words like “hack“ or “hacked"
 
 ### Reset tokens
 Reset tokens are generated using `os.urandom(16)` instead of CKAN's default

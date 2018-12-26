@@ -13,8 +13,8 @@ A CKAN extension to hold various security improvements for CKAN, including:
 * Stronger password validators (NZISM compatible)
 * When users try to reset a password for an email address, CKAN will no longer
 disclose whether or not that email address exists in the DB.
-* Hide user profiles and user list from unlogged users
-* Profanity check for usernames, and banned sensitive words like “hack“ or “hacked"
+* Hide user profiles and user list from users not logged in
+* Check for profanity and sensitive words, like "hack", in usernames and user descriptions.
 
 ### Reset tokens
 Reset tokens are generated using `os.urandom(16)` instead of CKAN's default
